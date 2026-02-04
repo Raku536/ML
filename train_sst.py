@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 """
-train_sst_tile.py
+train_sst.py
 
-SST-only ConvLSTM tile-based training for TSUBAME with:
+SST-only ConvLSTM training for TSUBAME with optional full-domain mode:
 - Land/missing handled via "mask channel" (SST NaN -> 0, mask=0)
 - Optional topo static features from ROMS grid file (h, gx, gy, slope)
 - Resume / checkpoint style: per-tile done_flag + per-tile model file
@@ -54,14 +54,14 @@ import argparse
 #   See "full_domain" in parse_args() and its use in main().
 def parse_args():
     p = argparse.ArgumentParser(
-        description="SST-only ConvLSTM tile training on TSUBAME (with topo, resume, time budget, test mode)."
+        description="SST-only ConvLSTM training on TSUBAME (tile or full-domain, with topo/resume/time budget/test)."
     )
 
     # --- paths ---
     p.add_argument("--data_root", type=str, required=True,
                    help="e.g., /gs/bs/tga-NakamuLab/raku/ML/data")
     p.add_argument("--out_root", type=str, required=True,
-                   help="e.g., /gs/bs/tga-NakamuLab/raku/ML/outputs/sst_tile/train_run001")
+                   help="e.g., /gs/bs/tga-NakamuLab/raku/ML/outputs/sst/train_run001")
     p.add_argument("--grid_file", type=str, default="",
                    help="optional: ROMS grid file path (Yaeyama2_grd_v11.2.nc) for topo features")
 
