@@ -1,0 +1,9 @@
+*.nc
+*.h5
+*.pth
+*.ckpt
+*.npz
+*.npy
+data/
+outputs/
+logs/
